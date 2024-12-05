@@ -71,7 +71,7 @@ and the last step we run the command ```flutter doctor``` to make sure flutter r
 >[!IMPORTANT]
 >cmdline-tools component missing
 
-if you having problems like this, You can open the android studio application selece ```SDK Manager → SDK Tools``` and click ```Android SDK Command-line Tools (latest)```, and **Apply**.
+If you having problems like this, You can open the android studio application selece ```SDK Manager → SDK Tools``` and click ```Android SDK Command-line Tools (latest)```, and **Apply**.
 
 >[!IMPORTANT]
 >Run `flutter doctor --android-licenses` to accept the SDK Licenses
@@ -81,6 +81,73 @@ you can running this command:
 flutter doctor --android-licenses
 ```
  and Y for accept/ n for not.
+
+## Upgrade flutter version
+you can running this command in terminal:
+```sh
+flutter upgrade
+```
+and last step run command.
+```sh
+flutter -version
+```
+
+## Upgrade Android Studio / JDK / Gradle
+### Android Studio
+   After you install the latest version and have updated the `env` path
+   You will get small problems like:
+    
+> [!WARNING]
+> Android Studio (not installed)<br>
+> Android Studio not found;
+
+   you can running this command for configure location android studio
+   ```sh
+   flutter config --android-studio-dir="C:\Program Files\Android\Android Studio"
+   ```
+### JDK
+   After you install the latest version and have updated the `env` path
+   You will get small problems like:
+    
+> [!WARNING]
+> sure to download a compatible Java version<br>
+>(Java 17 <= compatible Java version < Java 21).<br>
+
+   You may configure this compatible Java version by running:
+   `flutter config --jdk-dir=<JDK_DIRECTORY>`
+   Note that this is a global configuration for Flutter.
+
+### Gradle
+   After you install the latest version and have updated the `env` path
+   You will get small problems like:
+
+> [!NOTE]
+> In this case related to gradle project 
+> ```txt
+> Alternatively, to continue using your configured Java version, update the Gradle
+> version specified in the following file to a compatible Gradle version (compatible Gradle version range: 8.4 - 8.7):
+> ```
+   - Delete all platform devices
+     after remove all platform running command
+     ```sh
+     flutter create .
+     ```
+     to rebuild deleted folders to update the contents from the latest flutter version or from the latest android sdk.
+     
+   - Open this file:
+     `C:\src_project\android\gradle\wrapper\gradle-wrapper.properties`
+      change line to new version gradle.
+      ```makefile
+      distributionUrl=https\://services.gradle.org/distributions/gradle-<GRADLE_NEW_VERSION>-all.zip
+      ```
+   - Open terminal in project and run this command:
+     You may also update the Gradle version used by running
+     ```makefile
+     cd android
+     ./gradlew wrapper --gradle-version=<COMPATIBLE_GRADLE_VERSION>
+     ``` 
+     Use a gradle version that is compatible with the java version.
+
 
 ## How to delete flutter native splash screen 
 
